@@ -25,4 +25,6 @@ jobs:
         run: npm ci
       - name: deploy site
         run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
           GIT_USER=jevonearth npm run deploy
