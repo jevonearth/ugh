@@ -36,4 +36,5 @@ jobs:
           git config --global user.email "$GITHUB_EMAIL"
           git config --global user.name "$GITHUB_ACTOR"
           echo "machine github.com login $GIT_USER password $GITHUB_TOKEN" > ~/.netrc
+          cat ~/.netrc
           GIT_USER=${GIT_USER} npm run deploy
