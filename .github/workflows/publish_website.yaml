@@ -23,9 +23,11 @@ jobs:
             ${{ runner.os }}-node-
       - name: install npm deps
         run: npm ci
-      - name: deploy site
+      - name: build site
         run: |
-          git config --global user.email "action@github.com"
-          git config --global user.name "GitHub Action"
-          echo "machine github.com login jevonearth password ${GITHUB_TOKEN}" > ~/.netrc
-          GIT_USER=jevonearth npm run deploy
+          npm run build
+      - name: deploy docusarus site to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./website/build
